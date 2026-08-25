@@ -1,0 +1,16 @@
+name: TextureMySkulls
+description: $description
+version: '$version'
+
+main: owlbe.textureMySkulls.TextureMySkulls
+api-version: '26.2'
+load: POSTWORLD
+folia-supported: true
+
+authors: [ owlbe ]
+
+dependencies:
+  server:
+    packetevents:
+      load: BEFORE
+      required: true

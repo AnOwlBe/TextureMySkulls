@@ -1,0 +1,30 @@
+
+# Listeners for <skull_texture:base64>
+# Disabling one of these will make it so <skull_texture:base64> will not work in that area (e.g. action bar).
+listeners:
+  system_message: true
+  action_bar: true
+  boss_bar:
+    title: true
+  team:
+    display_name: true
+    prefix: true
+    suffix: true
+  title:
+    main_title: true
+    subtitle: true
+  inventory:
+    name: true
+    item_name: true
+    item_lore: true
+  disconnect:
+    message: true
+  scoreboard:
+    title: true
+  resource_pack:
+    prompt: true
+  tab:
+    header: true
+    footer: true
+    player_display_name: true
+
