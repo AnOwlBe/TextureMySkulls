@@ -12,6 +12,7 @@ TextureMySkulls is a simple plugin that allows you to easily use the textured sp
 > Disconnect Message  
 > Resource Pack Prompt  
 > If there's a listener that's missing and you want it added, make an issue on the GitHub!
+> Displays
 
 ## Guide
 First, you'll need a base64 texture.
