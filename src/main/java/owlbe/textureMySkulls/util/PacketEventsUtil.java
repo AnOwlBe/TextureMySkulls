@@ -3,7 +3,9 @@ package owlbe.textureMySkulls.util;
 import com.github.retrooper.packetevents.protocol.component.ComponentTypes;
 import com.github.retrooper.packetevents.protocol.component.builtin.item.ItemLore;
 import com.github.retrooper.packetevents.protocol.item.ItemStack;
+import io.github.retrooper.packetevents.adventure.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.Component;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -29,4 +31,5 @@ public final class PacketEventsUtil {
 			}
 		}
 	}
+
 }

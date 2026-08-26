@@ -27,4 +27,7 @@ listeners:
     header: true
     footer: true
     player_display_name: true
+  entity:
+    display:
+      text_display: true
 

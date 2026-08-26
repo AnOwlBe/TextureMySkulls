@@ -6,6 +6,7 @@ import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Pattern;
 
@@ -30,7 +31,11 @@ public final class MiniMessageUtil {
 	 * @param component The component to check against
 	 * @return Whether it needs to be formatted or not
 	 */
-	public static boolean needsFormatting(Component component) {
+	public static boolean needsFormatting(@Nullable Component component) {
+		// Seems like PacketEvents doesn't annotate everything with NotNull/Nullable so to prevent issues
+		if (component == null)
+			return false;
+
 		if (component instanceof TextComponent textComponent && textComponent.content().contains("skull_texture:")) {
 			return true;
 		}

@@ -2,11 +2,15 @@ package owlbe.textureMySkulls;
 
 import com.github.retrooper.packetevents.event.PacketListener;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
+import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
+import com.github.retrooper.packetevents.protocol.entity.data.EntityDataTypes;
 import com.github.retrooper.packetevents.protocol.item.ItemStack;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.server.*;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import static owlbe.textureMySkulls.TextureMySkulls.instance;
 import static owlbe.textureMySkulls.util.MiniMessageUtil.format;
@@ -76,9 +80,9 @@ public final class Listener implements PacketListener {
 				WrapperPlayServerTitle packet = new WrapperPlayServerTitle(event);
 				Component title = packet.getTitle();
 				Component subtitle = packet.getSubtitle();
-				if (title != null && needsFormatting(title) && instance.getConfig().getBoolean("listeners.title.main_title"))
+				if (needsFormatting(title) && instance.getConfig().getBoolean("listeners.title.main_title"))
 					packet.setTitle(format(title));
-				if (subtitle != null && needsFormatting(subtitle) && instance.getConfig().getBoolean("listeners.title.subtitle"))
+				if (needsFormatting(subtitle) && instance.getConfig().getBoolean("listeners.title.subtitle"))
 					packet.setSubtitle(format(subtitle));
 			}
 			case PacketType.Play.Server.SCOREBOARD_OBJECTIVE -> {
@@ -114,6 +118,29 @@ public final class Listener implements PacketListener {
 				for (ItemStack item : packet.getItems()) {
 					applyItemFormat(item);
 				}
+			}
+			case PacketType.Play.Server.ENTITY_METADATA -> {
+				if (!(instance.getConfig().getBoolean("listeners.entity.display.text_display")))
+					return;
+
+				WrapperPlayServerEntityMetadata packet = new WrapperPlayServerEntityMetadata(event);
+
+				List<EntityData<?>> metaDataList = packet.getEntityMetadata();
+				boolean changed = false;
+				int counter = 0;
+
+				for (EntityData<?> meta : metaDataList) {
+					if (meta.getIndex() == 23) {
+						if (meta.getValue() instanceof Component text && needsFormatting(text)) {
+							metaDataList.set(counter, new EntityData<>(23, EntityDataTypes.ADV_COMPONENT, format(text)));
+							changed = true;
+						}
+					}
+					counter++;
+				}
+
+				if (changed)
+					packet.setEntityMetadata(metaDataList);
 			}
 			default -> {}
 		}
