@@ -11,8 +11,9 @@ TextureMySkulls is a simple plugin that allows you to easily use the textured sp
 > Scoreboard Title/Lines (if they use team prefix)  
 > Disconnect Message  
 > Resource Pack Prompt  
-> If there's a listener that's missing and you want it added, make an issue on the GitHub!
 > Displays
+
+> If there's a listener that's missing and you want it added, make an issue on the GitHub!
 
 ## Guide
 First, you'll need a base64 texture.
